@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&family=Poppins:wght@200;400;500&display=swap');
+
+body{
+    background-color: rgb(143, 153, 172);
+    height: 100vh;
+    margin: 0;
+    font-family: 'Inconsolata', monospace;
+    & h1{
+        margin: auto;
+        width: max-content;
+        margin-top: 55px;
+        font-size: 4rem;
+    }
+    & label{
+        font-size: 2rem;
+        
+    }
+}
