@@ -2,7 +2,7 @@
 const cityName = document.getElementById("cityName");
 const button = document.getElementById("button");
 const weatherTemplate = document.getElementById("weatherTemplate");
-let weatherOutput = document.getElementById("weatherOutput");
+const weatherOutput = document.getElementById("weatherOutput");
 const apiKey = "03368b30afe0d56755bf6d1ce4341ad4";
 
 //fetch
@@ -16,10 +16,23 @@ button.addEventListener("click", () => {
     .then((responseJson) => {
         const list = responseJson.list;
         const location = responseJson.city.name;
-        const day = new Date();
+        const myArray = responseJson.list[5].dt_txt.split(" ");
+        const splitHours = myArray[1].split(':');
+        console.log(`${splitHours[0]}:${splitHours[1]}`);
+        const day = new Date(responseJson.list[5].dt_txt);
         const formattedDay = day.toLocaleString('fr-FR', {
-        weekday: "long",
-    });
+            weekday: "long",
+        });
+        function hoursFormatted(){
+            const hour = day.getHours().toString();
+            console.log(hour);
+            const formattedHours = hour;
+            if (formattedHours >= 10) {
+                formattedHours.padEnd(5, ":00")
+            } else {
+                formattedHours.padEnd(4, ":00")
+            }
+        };
     weatherOutput.innerHTML = `<h2>${location}</h2>`;
     list.forEach(e => {
         weatherOutput.innerHTML += `
@@ -35,5 +48,5 @@ button.addEventListener("click", () => {
 
 .catch((error) => {
     console.log(error);
-});
 })
+});
