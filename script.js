@@ -16,29 +16,20 @@ button.addEventListener("click", () => {
     .then((responseJson) => {
         const list = responseJson.list;
         const location = responseJson.city.name;
-        const myArray = responseJson.list[5].dt_txt.split(" ");
+
+        weatherOutput.innerHTML = `<h2>${location}</h2>`;
+
+        list.forEach(e => {
+        const myArray = e.dt_txt.split(" ");
         const splitHours = myArray[1].split(':');
-        console.log(`${splitHours[0]}:${splitHours[1]}`);
-        const day = new Date(responseJson.list[5].dt_txt);
+        const day = new Date(e.dt_txt);
         const formattedDay = day.toLocaleString('fr-FR', {
             weekday: "long",
         });
-        function hoursFormatted(){
-            const hour = day.getHours().toString();
-            console.log(hour);
-            const formattedHours = hour;
-            if (formattedHours >= 10) {
-                formattedHours.padEnd(5, ":00")
-            } else {
-                formattedHours.padEnd(4, ":00")
-            }
-        };
-    weatherOutput.innerHTML = `<h2>${location}</h2>`;
-    list.forEach(e => {
         weatherOutput.innerHTML += `
         <li>
         <div>${formattedDay}</div>
-        <div>${e.dt_txt}</div>
+        <div>${splitHours[0]}:${splitHours[1]}</div>
         <img src="https://openweathermap.org/img/wn/${e.weather[0].icon}@2x.png" alt="">
         <div>${e.main.temp} C°</div>
         <div>${e.weather[0].description}</div>
