@@ -28,9 +28,9 @@ button.addEventListener("click", () => {
         });
         weatherOutput.innerHTML += `
         <li>
+        <img src="https://openweathermap.org/img/wn/${e.weather[0].icon}@2x.png" alt="">
         <div>${formattedDay}</div>
         <div>${splitHours[0]}:${splitHours[1]}</div>
-        <img src="https://openweathermap.org/img/wn/${e.weather[0].icon}@2x.png" alt="">
         <div>${e.main.temp} C°</div>
         <div>${e.weather[0].description}</div>
         </li>`

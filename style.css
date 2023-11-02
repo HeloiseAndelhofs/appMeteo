@@ -8,10 +8,27 @@ body{
     & h1{
         margin: auto;
         width: max-content;
-        margin-top: 55px;
+        margin-top: 60px;
         font-size: 4rem;
     }
-    & label{
-        font-size: 2rem;
+    & #choose {
+        display: flex;
+        justify-content: center;
+        & label{
+            margin-top: 35px;
+            font-size: 2rem;
+        }
+        & select, button{
+            height: 35px;
+            align-self: self-end;
+            border-radius: 10px;
+            border: rgba(255, 255, 255, 0);
+        }
+        & select{
+            background-color: aliceblue;
+        }
+        & button{
+        background-color: azure;
+        }
     }
 }
