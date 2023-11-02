@@ -16,8 +16,10 @@ button.addEventListener("click", () => {
     .then((responseJson) => {
         const list = responseJson.list;
         const location = responseJson.city.name;
+        const title = document.getElementsByTagName("h1");
 
-        weatherOutput.innerHTML = `<h2>${location}</h2>`;
+        title[0].innerHTML = `Météo à ${location}`;
+
 
         list.forEach(e => {
         const myArray = e.dt_txt.split(" ");
