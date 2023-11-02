@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&family=Poppins:wght@200;400;500&display=swap');
 
 body{
-    /* background-color: rgb(143, 153, 172); */
+    background-color: rgb(143, 153, 172);
     /* height: 100vh; */
     margin: 0;
     font-family: 'Inconsolata', monospace;
-    background-image: url("https://giphy.com/gifs/HollerStudios-animation-reaction-gif-holler-studios-J9XEvHg6UQyLi4xBfM    ");
+    /* background-image: url("https://giphy.com/gifs/HollerStudios-animation-reaction-gif-holler-studios-J9XEvHg6UQyLi4xBfM    "); */
     & h1{
         margin: auto;
         width: max-content;

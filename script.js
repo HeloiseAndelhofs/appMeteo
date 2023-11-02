@@ -9,6 +9,9 @@ const apiKey = "03368b30afe0d56755bf6d1ce4341ad4";
 button.addEventListener("click", () => {
     const city = cityName.value;
     const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&lang=fr&cnt=8&units=metric&timezone=Z`;
+
+    weatherOutput.innerHTML = '';
+
     fetch(apiUrl)
     .then((response) => {
         return response.json()
