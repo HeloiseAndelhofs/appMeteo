@@ -24,22 +24,44 @@ button.addEventListener("click", () => {
         title[0].innerHTML = `Météo à ${location}`;
 
 
-        list.forEach(e => {
+        list.forEach((e, index) => {
         const myArray = e.dt_txt.split(" ");
         const splitHours = myArray[1].split(':');
         const day = new Date(e.dt_txt);
         const formattedDay = day.toLocaleString('fr-FR', {
             weekday: "long",
         });
+
+        const weatherClass = e.weather[0].description.toLowerCase().replace(' ', '-');
+
+        if (index === 0) {
+        document.body.style.background = getBackgroundImage(weatherClass);
+        }
+
         weatherOutput.innerHTML += `
-        <li>
-        <img src="https://openweathermap.org/img/wn/${e.weather[0].icon}@2x.png" alt="">
-        <div>${formattedDay}</div>
-        <div>${splitHours[0]}:${splitHours[1]}</div>
-        <div>${e.main.temp} C°</div>
-        <div>${e.weather[0].description}</div>
-        </li>`
+           <li class="${weatherClass}">
+           <img src="https://openweathermap.org/img/wn/${e.weather[0].icon}@2x.png" alt="">
+           <div>${formattedDay}</div>
+           <div>${splitHours[0]}:${splitHours[1]}</div>
+           <div>${e.main.temp} C°</div>
+           <div>${e.weather[0].description}</div>
+           </li>`;
     });
+
+    function getBackgroundImage(weatherClass) {
+
+    const backgroundImages = {
+        'partiellement-nuageux': "url(./clouds.gif)",
+        'nuageux': "url(./clouds.gif)",
+        'légère-pluie': "url(./rain.gif)", 
+        'ciel-dégagé': "url(./sun.gif)"
+    };
+
+    const defaultColor = 'rgb(143, 153, 172)';
+
+    return backgroundImages[weatherClass] || defaultColor;
+};
+
 })
 
 .catch((error) => {
