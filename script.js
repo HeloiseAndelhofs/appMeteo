@@ -32,36 +32,47 @@ button.addEventListener("click", () => {
             weekday: "long",
         });
 
+        
+        const temp = e.main.temp;
+
         const weatherClass = e.weather[0].description.toLowerCase().replace(' ', '-');
 
-        if (index === 0) {
-        document.body.style.background = getBackgroundImage(weatherClass);
+        if (temp < 0 && index === 0) {
+            document.body.style.background = "url(./iced.gif)"
+        } else if (index === 0) {
+            document.body.style.background = getBackgroundImage(weatherClass);
         }
 
+        
         weatherOutput.innerHTML += `
-           <li class="${weatherClass}">
-           <img src="https://openweathermap.org/img/wn/${e.weather[0].icon}@2x.png" alt="">
-           <div>${formattedDay}</div>
-           <div>${splitHours[0]}:${splitHours[1]}</div>
-           <div>${e.main.temp} C°</div>
-           <div>${e.weather[0].description}</div>
-           </li>`;
+        <li class="${weatherClass}">
+        <img src="https://openweathermap.org/img/wn/${e.weather[0].icon}@2x.png" alt="">
+        <div>${formattedDay}</div>
+        <div>${splitHours[0]}:${splitHours[1]}</div>
+        <div>${temp} C°</div>
+        <div>${e.weather[0].description}</div>
+        </li>`;
     });
+    
 
+    
     function getBackgroundImage(weatherClass) {
 
     const backgroundImages = {
-        'partiellement-nuageux': "url(./clouds.gif)",
+        'couvert': "url(./storm.gif)",
         'nuageux': "url(./clouds.gif)",
+        'partiellement-nuageux': "url(./clouds.gif)",
+        'peu-nuageux': "url(./fewClouds.gif)",
+        'pluie-modérée': "url(./rain.gif)",  
         'légère-pluie': "url(./rain.gif)", 
         'ciel-dégagé': "url(./sun.gif)"
     };
-
-    const defaultColor = 'rgb(143, 153, 172)';
-
-    return backgroundImages[weatherClass] || defaultColor;
-};
-
+        
+        const defaultColor = 'rgb(143, 153, 172)';
+        
+        return backgroundImages[weatherClass] || defaultColor;
+    };
+    
 })
 
 .catch((error) => {
